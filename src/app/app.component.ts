@@ -8,6 +8,7 @@ import { AccountService } from './services/account.service';
 })
 export class AppComponent {
   title = 'ngMVCEtWebAPI';
+  result = "";
 
   constructor(public account:AccountService){
   }
@@ -16,15 +17,22 @@ export class AppComponent {
     try{
       await this.account.register();
     }
-    catch(e){
-      alert("Erreur pendant l'enregistrement!!!!!");
+    catch(e:any){
+      console.log(e);
+      alert("Erreur pendant l'enregistrement: " + e.message);
       return;
     }
     alert("L'enregistrement a été un succès!");
   }
 
   async login(){
-    await this.account.login();
+    try{
+      await this.account.login();
+    }
+    catch(e:any){
+      console.log(e);
+      alert("Erreur pendant la connexion: " + e.message);
+    }
   }
 
   async logout(){
@@ -32,11 +40,25 @@ export class AppComponent {
   }
 
   async publicCall(){
-    await this.account.publicCall();
+    try{
+      let resultArray = await this.account.publicCall();
+      this.result = resultArray.toString();
+    }
+    catch(e:any){
+      console.log(e);
+      this.result = e.message;
+    }
   }
 
   async privateCall(){
-    await this.account.privateCall();
+    try{
+      let resultArray = await this.account.privateCall();
+      this.result = resultArray.toString();
+    }
+    catch(e:any){
+      console.log(e);
+      this.result = e.message;
+    }
   }
 
   isLoggedIn() : Boolean{

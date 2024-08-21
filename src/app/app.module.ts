@@ -7,10 +7,8 @@ import { ApiInterceptor } from './services/api.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-// TODO: Ajouter FormsModule, MatButtonModule et MatInputModule
+// TODO: Ajouter FormsModule
 import { FormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -20,9 +18,7 @@ import { MatInputModule } from '@angular/material/input';
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    MatButtonModule,
-    MatInputModule
+    FormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true }

@@ -1,21 +1,24 @@
 <form class="borderedZone">
-  <div class="loginZone" *ngIf="!isLoggedIn()">
-    <mat-form-field  style="width: 100%;">
-      <mat-label>Nom d'usager</mat-label>
-      <input matInput type="text" [(ngModel)]="account.username" name="username"/>
-    </mat-form-field>
-  </div>
-  <div class="loginZone" *ngIf="isLoggedIn()">
-    <div style="padding-top: 24px;">Bonjour <b>{{account.username}}!</b></div>
-  </div>
   <div *ngIf="!isLoggedIn()">
-    <button mat-raised-button color="primary" (click)="register()">Enregistrer</button>
-    <button mat-raised-button color="accent" (click)="login()">Login</button>
+    <div class="withMargin">
+      <input type="text" [(ngModel)]="account.username" name="username"/>
+    </div>
+    <button (click)="register()">Enregistrer</button>
+    <button (click)="login()">Login</button>
   </div>
   <div *ngIf="isLoggedIn()">
-    <button mat-raised-button color="accent" (click)="logout()">Logout</button>
+    <div class="withMargin">
+      Bonjour <b>{{account.username}}!</b>
+    </div>
+    <button (click)="logout()">Logout</button>
   </div>
 </form>
 
-<button mat-raised-button color="accent" (click)="publicCall()">Test Publique</button>
-<button mat-raised-button color="accent" (click)="privateCall()">Test Privé</button>
+<div class="withMargin">
+  <button (click)="publicCall()">Test Publique</button>
+  <button (click)="privateCall()">Test Privé</button>
+</div>
+<div style="padding-left: 12px;">
+  Résultat: {{result}}
+</div>
+

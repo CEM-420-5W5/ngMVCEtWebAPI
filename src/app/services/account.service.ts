@@ -24,7 +24,7 @@ export class AccountService {
       password : this.motDePasse,
       passwordConfirm : this.motDePasse,
     }
-    let result = await lastValueFrom(this.http.post<any>(this.accountBaseUrl + 'Register', registerData));
+    await lastValueFrom(this.http.post<any>(this.accountBaseUrl + 'Register', registerData));
   }
 
   async login(){
@@ -33,18 +33,15 @@ export class AccountService {
       password : this.motDePasse
     }
     let result = await lastValueFrom(this.http.post<any>(this.accountBaseUrl + 'Login', registerData));
-    console.log(result);
     localStorage.setItem(TOKEN_LOCALSTORAGE_KEY, result.token);
   }
 
-  async publicCall(){
-    let result = await lastValueFrom(this.http.get<any>(this.accountBaseUrl + 'PublicTest'));
-    alert(result);
+  async publicCall() : Promise<string[]>{
+    return await lastValueFrom(this.http.get<any>(this.accountBaseUrl + 'PublicTest'));
   }
 
-  async privateCall(){
-    let result = await lastValueFrom(this.http.get<any>(this.accountBaseUrl + 'PrivateTest'));
-    alert(result);
+  async privateCall() : Promise<string[]>{
+    return await lastValueFrom(this.http.get<any>(this.accountBaseUrl + 'PrivateTest'));
   }
 
   async logout(){

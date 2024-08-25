@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AccountService } from './services/account.service';
+import { ApiService } from './services/api.service';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,9 @@ import { AccountService } from './services/account.service';
 export class AppComponent {
   title = 'ngMVCEtWebAPI';
   result = "";
+  newTestDataName = "";
 
-  constructor(public account:AccountService){
+  constructor(public account:AccountService, public api:ApiService){
   }
 
   async register(){
@@ -63,5 +65,11 @@ export class AppComponent {
 
   isLoggedIn() : Boolean{
     return this.account.isLoggedIn();
+  }
+
+  async createTestData(){
+    await this.api.createTestData(this.newTestDataName);
+    alert("Succès");
+    this.newTestDataName = "";
   }
 }

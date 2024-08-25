@@ -22,3 +22,10 @@
   Résultat: {{result}}
 </div>
 
+<form class="borderedZone" *ngIf="isLoggedIn()">
+  <h4>Ajout de data</h4>
+  <div class="withMargin">
+    <input type="text" [(ngModel)]="newTestDataName" name="newTestDataName"/>
+  </div>
+  <button (click)="createTestData()">Ajouter</button>
+</form>
